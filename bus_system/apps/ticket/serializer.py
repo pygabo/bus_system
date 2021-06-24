@@ -1,10 +1,9 @@
 # Core Django rest_framework imports
 from rest_framework.serializers import ModelSerializer
 
+from bus_system.apps.passenger.serializer import PassengerSerializer
 # Imports from my apps
 from bus_system.apps.ticket.models import TicketModel
-from bus_system.apps.passenger.serializer import PassengerSerializer
-from bus_system.apps.trip.serializer import TravelSerializer
 
 
 class TicketSerializer(ModelSerializer):

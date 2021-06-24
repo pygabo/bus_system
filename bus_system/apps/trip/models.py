@@ -1,21 +1,16 @@
 # Core Django imports
 from django.db.models import (
     PROTECT,
-    SET_NULL,
     BooleanField,
     CharField,
     DateTimeField,
     ForeignKey,
-    PositiveSmallIntegerField,
     ManyToManyField,
-    Manager
-
+    PositiveSmallIntegerField,
 )
-from django.db.models import Avg, Count, Min, Sum
 
 # Imports from my apps
 from bus_system.apps.bus.models import BusModel
-from bus_system.apps.bus_driver.models import BusDriverModel
 from bus_system.utils.models import BaseModel
 
 

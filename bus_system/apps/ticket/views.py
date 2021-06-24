@@ -1,19 +1,14 @@
 # Core Django rest_framework imports
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny
-# Imports from my apps
-from bus_system.apps.ticket.models import TicketModel
-from bus_system.apps.ticket.serializer import TicketSerializer, TicketListSerializer
-from rest_framework import status
+from django.shortcuts import get_object_or_404
+from rest_framework import mixins
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from rest_framework import generics, mixins, views
 
-from bus_system.apps.trip.models import TripModel
-from bus_system.apps.trip.serializer import TripSerializer
-from rest_framework.decorators import action
+# Imports from my apps
+from bus_system.apps.ticket.models import TicketModel
+from bus_system.apps.ticket.serializer import TicketListSerializer, TicketSerializer
 from bus_system.apps.trip.models import TravelModel
-from django.shortcuts import get_list_or_404, get_object_or_404
 
 
 class TicketViewSet(mixins.RetrieveModelMixin,
@@ -25,7 +20,6 @@ class TicketViewSet(mixins.RetrieveModelMixin,
     """
     serializer_class = TicketSerializer
     queryset = TicketModel.objects.filter(is_pay=False, passenger__isnull=True)
-    permission_classes = [AllowAny, ]
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)

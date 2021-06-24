@@ -1,12 +1,9 @@
 # Core Django rest_framework imports
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
+from bus_system.apps.bus.serializer import BusSerializer
 # Imports from my apps
 from bus_system.apps.trip.models import DestinationModel, TravelModel, TripModel
-from bus_system.apps.bus.serializer import BusSerializer
-from django.db.models import Sum
-from django.db.models import Avg
-from django.shortcuts import get_list_or_404, get_object_or_404
 
 
 class TravelSerializer(ModelSerializer):

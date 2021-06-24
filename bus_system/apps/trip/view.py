@@ -1,22 +1,21 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
 from rest_framework.response import Response
-# Core Django rest_framework imports
 from rest_framework.viewsets import ModelViewSet
 
+# Core Django rest_framework imports
 from bus_system.apps.bus.models import BusModel
-# Imports from my apps
-from bus_system.apps.trip.models import TravelModel, TripModel
-from bus_system.apps.trip.serializer import TravelSerializer, TripSerializer, TripCreateSerializer, \
-    TripAverageSerializer, DestinationSerializer
-from bus_system.apps.ticket.models import TicketModel
 from bus_system.apps.ticket.serializer import TicketSerializer
-from rest_framework.decorators import action
-from bus_system.apps.trip.models import DestinationModel
-from rest_framework.viewsets import GenericViewSet
-
-from rest_framework import generics, mixins, views
+# Imports from my apps
+from bus_system.apps.trip.models import DestinationModel, TravelModel, TripModel
+from bus_system.apps.trip.serializer import (
+    DestinationSerializer,
+    TravelSerializer,
+    TripAverageSerializer,
+    TripCreateSerializer,
+    TripSerializer,
+)
 
 
 class TravelViewSet(ModelViewSet):
@@ -25,7 +24,6 @@ class TravelViewSet(ModelViewSet):
     """
     serializer_class = TravelSerializer
     queryset = TravelModel.objects.all()
-    permission_classes = [AllowAny, ]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -50,7 +48,6 @@ class TripViewSet(ModelViewSet):
     """
     serializer_class = TripSerializer
     queryset = TripModel.objects.filter(is_available=True)
-    permission_classes = [AllowAny, ]
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -76,4 +73,3 @@ class DestinationViewSet(ModelViewSet):
     """
     serializer_class = DestinationSerializer
     queryset = DestinationModel.objects.all()
-    permission_classes = [AllowAny, ]
