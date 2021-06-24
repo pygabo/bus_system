@@ -66,7 +66,6 @@ class TripViewSet(ModelViewSet):
     @action(detail=False, methods=['GET'])
     def average(self, request, **kwargs):
         queryset = self.get_queryset()
-
         serializer = TripAverageSerializer(queryset, many=True)
         return Response(serializer.data)
 

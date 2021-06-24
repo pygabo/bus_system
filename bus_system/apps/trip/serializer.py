@@ -88,5 +88,9 @@ class TripAverageSerializer(ModelSerializer):
         )
 
     def get_average(self, obj):
-        return obj.travel_trip_set.filter(ticket_travel_set__is_pay=True,
-                                          ticket_travel_set__passenger__isnull=False).count()
+        average = 0
+        if obj.tickets_sold != 0:
+            average = obj.tickets_sold / obj.travel_trip_set.filter(ticket_travel_set__is_pay=True,
+                                                                    ticket_travel_set__passenger__isnull=False).count()
+
+        return average
