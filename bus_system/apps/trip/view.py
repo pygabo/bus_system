@@ -8,7 +8,7 @@ from rest_framework.viewsets import ModelViewSet
 from bus_system.apps.bus.models import BusModel
 # Imports from my apps
 from bus_system.apps.trip.models import TravelModel, TripModel
-from bus_system.apps.trip.serializer import TravelSerializer, TripSerializer
+from bus_system.apps.trip.serializer import TravelSerializer, TripSerializer, TripCreateSerializer
 from bus_system.apps.ticket.models import TicketModel
 from bus_system.apps.ticket.serializer import TicketSerializer
 
@@ -43,4 +43,14 @@ class TripViewSet(ModelViewSet):
     A viewset for viewing and editing travel instances.
     """
     serializer_class = TripSerializer
-    queryset = TripModel.objects.filter(is_available=False)
+    queryset = TripModel.objects.filter(is_available=True)
+    permission_classes = [AllowAny, ]
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return TripSerializer
+        if self.action == 'retrieve':
+            return TripSerializer
+        if self.action == 'create':
+            return TripCreateSerializer
+        return TripSerializer

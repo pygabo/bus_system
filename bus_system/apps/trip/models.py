@@ -7,6 +7,7 @@ from django.db.models import (
     DateTimeField,
     ForeignKey,
     PositiveSmallIntegerField,
+    ManyToManyField
 )
 
 # Imports from my apps
@@ -28,7 +29,8 @@ class DestinationModel(BaseModel):
 class TripModel(BaseModel):
     departure = ForeignKey(DestinationModel, on_delete=PROTECT, related_name='departure')
     arrival = ForeignKey(DestinationModel, on_delete=PROTECT, related_name='arrival')
-    is_available = BooleanField()
+    is_available = BooleanField(default=True)
+    assigned_buses = ManyToManyField(BusModel)
 
     def __str__(self):
         return str("{} - {}".format(self.departure, self.arrival))
