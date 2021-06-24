@@ -1,8 +1,7 @@
 import pytest
 from django.test import RequestFactory
 
-from bus_system.users import UserViewSet
-from bus_system.users import User
+from bus_system.users import User, UserViewSet
 
 pytestmark = pytest.mark.django_db
 

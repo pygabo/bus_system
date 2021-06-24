@@ -2,9 +2,9 @@
 from django.db.models import (
     SET_NULL,
     BooleanField,
+    CharField,
     ForeignKey,
     PositiveSmallIntegerField,
-    CharField,
 )
 
 # Imports from my apps
