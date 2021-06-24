@@ -15,7 +15,9 @@ class TicketSerializer(ModelSerializer):
         fields = (
             'id',
             'travel',
-            'chair_number'
+            'chair_number',
+            'passenger',
+            'is_pay',
         )
         read_only_fields = (
             'id',

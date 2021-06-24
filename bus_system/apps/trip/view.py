@@ -29,9 +29,7 @@ class TravelViewSet(ModelViewSet):
         get_bus_capacity = get_object_or_404(BusModel, id=serializer.data['bus']).capacity
         ticket_data = []
         for chair_number in range(get_bus_capacity):
-            chair_number_item = {}
-            chair_number_item['chair_number'] = chair_number
-            chair_number_item['travel'] = serializer.data['id']
+            chair_number_item = {'chair_number': chair_number, 'travel': serializer.data['id']}
             ticket_data.append(chair_number_item)
         serializer_tickets = TicketSerializer(data=ticket_data, many=True)
         serializer_tickets.is_valid(raise_exception=True)
@@ -46,4 +44,3 @@ class TripViewSet(ModelViewSet):
     """
     serializer_class = TripSerializer
     queryset = TripModel.objects.filter(is_available=False)
-    permission_classes = [AllowAny, ]

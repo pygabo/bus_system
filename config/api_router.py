@@ -6,6 +6,7 @@ from bus_system.apps.bus_driver.views import BusDriverViewSet
 from bus_system.apps.passenger.views import PassengerViewSet
 from bus_system.apps.trip.view import TravelViewSet, TripViewSet
 from bus_system.users.api.views import UserViewSet
+from bus_system.apps.ticket.views import TicketViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -18,6 +19,7 @@ router.register("driver", BusDriverViewSet, basename='driver')
 router.register("passenger", PassengerViewSet, basename='passenger')
 router.register("travel", TravelViewSet, basename='travel')
 router.register("trip", TripViewSet, basename='trip')
+router.register("ticket", TicketViewSet, basename='ticket')
 
 app_name = "api"
 urlpatterns = router.urls
