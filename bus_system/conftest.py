@@ -1,7 +1,7 @@
 import pytest
 
-from bus_system.apps.users.models import User
-from bus_system.apps.users.tests.factories import UserFactory
+from bus_system.users import User
+from bus_system.users.tests.factories import UserFactory
 
 
 @pytest.fixture(autouse=True)

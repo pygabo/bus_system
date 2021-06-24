@@ -3,7 +3,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
                   # Django Admin, use {% url 'admin:index' %}
@@ -16,9 +15,11 @@ if settings.DEBUG:
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include("config.api_router")),
+    path("api/v1/", include("config.api_router")),
     # DRF auth token
-    path("auth-token/", obtain_auth_token),
+    path('api/v1/', include('dj_rest_auth.urls')),
+    path('api/v1/registration/', include('dj_rest_auth.registration.urls'))
+
 ]
 
 if settings.DEBUG:
