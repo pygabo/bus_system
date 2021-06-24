@@ -6,14 +6,12 @@ from bus_system.apps.bus_driver.views import BusDriverViewSet
 from bus_system.apps.passenger.views import PassengerViewSet
 from bus_system.apps.ticket.views import TicketViewSet
 from bus_system.apps.trip.view import DestinationViewSet, TravelViewSet, TripViewSet
-from bus_system.users.api.views import UserViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
 else:
     router = SimpleRouter()
 
-router.register("users", UserViewSet, basename="users")
 router.register("bus", BusViewSet, basename="bus")
 router.register("driver", BusDriverViewSet, basename="driver")
 router.register("passenger", PassengerViewSet, basename="passenger")
