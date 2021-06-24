@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
+from bus_system.apps.ticket.views import TicketViewSet
 
 urlpatterns = [
                   # Django Admin, use {% url 'admin:index' %}
@@ -18,7 +19,8 @@ urlpatterns += [
     path("api/v1/", include("config.api_router")),
     # DRF auth token
     path('api/v1/', include('dj_rest_auth.urls')),
-    path('api/v1/registration/', include('dj_rest_auth.registration.urls'))
+    path('api/v1/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/v1/tickets/available/<str:travel_id>/', TicketViewSet.as_view(actions={'get': 'available'}))
 
 ]
 

@@ -7,8 +7,11 @@ from django.db.models import (
     DateTimeField,
     ForeignKey,
     PositiveSmallIntegerField,
-    ManyToManyField
+    ManyToManyField,
+    Manager
+
 )
+from django.db.models import Avg, Count, Min, Sum
 
 # Imports from my apps
 from bus_system.apps.bus.models import BusModel
@@ -31,6 +34,7 @@ class TripModel(BaseModel):
     arrival = ForeignKey(DestinationModel, on_delete=PROTECT, related_name='arrival')
     is_available = BooleanField(default=True)
     assigned_buses = ManyToManyField(BusModel)
+    tickets_sold = PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return str("{} - {}".format(self.departure, self.arrival))
@@ -40,11 +44,15 @@ class TripModel(BaseModel):
 
 
 class TravelModel(BaseModel):
-    trip = ForeignKey(TripModel, on_delete=PROTECT)
-    driver = ForeignKey(BusDriverModel, on_delete=SET_NULL, null=True)
+    trip = ForeignKey(TripModel, on_delete=PROTECT, related_name='travel_trip_set',
+                      related_query_name='travel_trip_set')
     bus = ForeignKey(BusModel, on_delete=PROTECT)
     departure_time = DateTimeField()
     price = PositiveSmallIntegerField()
+
+    @property
+    def sales_count(self):
+        return self.ticket_travel_set.filter(is_pay=True, passenger__isnull=False).count()
 
     def __str__(self):
         return str("{} {}".format(self.trip, self.departure_time))

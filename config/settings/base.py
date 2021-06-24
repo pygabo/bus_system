@@ -2,7 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
-
+from datetime import timedelta
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
@@ -314,3 +314,11 @@ ACTIVATION_URL = False
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': env("DJANGO_SECRET_KEY",
+                       default="hrcaI0NRSC4gUdfGki2r8S3BmWfU9D3QOctMU9Z5mbF434GKeivOqLlaxndI7Y4Q", ),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

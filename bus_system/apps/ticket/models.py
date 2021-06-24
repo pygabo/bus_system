@@ -5,7 +5,8 @@ from bus_system.apps.passenger.models import PassengerModel
 
 
 class TicketModel(BaseModel):
-    travel = ForeignKey(TravelModel, on_delete=PROTECT)
+    travel = ForeignKey(TravelModel, on_delete=PROTECT, related_name='ticket_travel_set',
+                        related_query_name='ticket_travel_set')
     passenger = ForeignKey(PassengerModel, on_delete=SET_NULL, null=True)
     is_pay = BooleanField(default=False)
     chair_number = SmallIntegerField()

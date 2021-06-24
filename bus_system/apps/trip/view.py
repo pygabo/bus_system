@@ -8,9 +8,15 @@ from rest_framework.viewsets import ModelViewSet
 from bus_system.apps.bus.models import BusModel
 # Imports from my apps
 from bus_system.apps.trip.models import TravelModel, TripModel
-from bus_system.apps.trip.serializer import TravelSerializer, TripSerializer, TripCreateSerializer
+from bus_system.apps.trip.serializer import TravelSerializer, TripSerializer, TripCreateSerializer, \
+    TripAverageSerializer, DestinationSerializer
 from bus_system.apps.ticket.models import TicketModel
 from bus_system.apps.ticket.serializer import TicketSerializer
+from rest_framework.decorators import action
+from bus_system.apps.trip.models import DestinationModel
+from rest_framework.viewsets import GenericViewSet
+
+from rest_framework import generics, mixins, views
 
 
 class TravelViewSet(ModelViewSet):
@@ -53,4 +59,22 @@ class TripViewSet(ModelViewSet):
             return TripSerializer
         if self.action == 'create':
             return TripCreateSerializer
+        if self.action == 'average':
+            return TripAverageSerializer
         return TripSerializer
+
+    @action(detail=False, methods=['GET'])
+    def average(self, request, **kwargs):
+        queryset = self.get_queryset()
+
+        serializer = TripAverageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class DestinationViewSet(ModelViewSet):
+    """
+    A viewset for viewing and editing travel instances.
+    """
+    serializer_class = DestinationSerializer
+    queryset = DestinationModel.objects.all()
+    permission_classes = [AllowAny, ]
