@@ -13,6 +13,7 @@ class BusSerializer(ModelSerializer):
     class Meta:
         model = BusModel
         fields = (
+            'id',
             'plate',
             'is_available',
             'capacity',

@@ -4,6 +4,7 @@ from django.db.models import (
     BooleanField,
     ForeignKey,
     PositiveSmallIntegerField,
+    CharField,
 )
 
 # Imports from my apps
@@ -15,8 +16,8 @@ class BusModel(BaseModel):
     """
     Bus Model
     """
-    plate = BooleanField()
-    is_available = BooleanField()
+    plate = CharField(max_length=15)
+    is_available = BooleanField(default=True)
     capacity = PositiveSmallIntegerField(default=10)
     driver = ForeignKey(BusDriverModel, on_delete=SET_NULL, null=True)
 
