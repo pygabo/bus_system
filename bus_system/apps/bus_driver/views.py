@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 
+# Imports from my apps
 from bus_system.apps.bus_driver.models import BusDriverModel
 from bus_system.apps.bus_driver.serializer import BusDriverSerializer
 
@@ -10,4 +11,3 @@ class BusDriverViewSet(ModelViewSet):
     """
     serializer_class = BusDriverSerializer
     queryset = BusDriverModel.objects.all()
-

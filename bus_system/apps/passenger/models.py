@@ -1,5 +1,5 @@
-from bus_system.utils.models import StakeholderBaseModel
-from bus_system.utils.models import BaseModel
+# Imports from my apps
+from bus_system.utils.models import BaseModel, StakeholderBaseModel
 
 
 class PassengerModel(BaseModel, StakeholderBaseModel):

@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  local_postgres_data: {}
-  local_postgres_data_backups: {}
+  local_postgres_data: { }
+  local_postgres_data_backups: { }
 
 services:
   django: &django
@@ -35,22 +35,6 @@ services:
     env_file:
       - ./.envs/.local/.postgres
 
-  docs:
-    image: bus_system_local_docs
-    container_name: docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./bus_system:/app/bus_system:z
-    ports:
-      - "7000:7000"
-    command: /start-docs
-
   mailhog:
     image: mailhog/mailhog:v1.0.0
     container_name: mailhog
@@ -69,7 +53,7 @@ services:
       - redis
       - postgres
       - mailhog
-    ports: []
+    ports: [ ]
     command: /start-celeryworker
 
   celerybeat:
@@ -80,7 +64,7 @@ services:
       - redis
       - postgres
       - mailhog
-    ports: []
+    ports: [ ]
     command: /start-celerybeat
 
   flower:

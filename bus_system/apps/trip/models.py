@@ -1,8 +1,17 @@
-from django.db.models import CharField, ForeignKey, PROTECT, DateTimeField, BooleanField, PositiveSmallIntegerField
+# Core Django imports
+from django.db.models import (
+    PROTECT,
+    BooleanField,
+    CharField,
+    DateTimeField,
+    ForeignKey,
+    PositiveSmallIntegerField,
+)
 
+# Imports from my apps
+from bus_system.apps.bus.models import BusModel
 from bus_system.apps.bus_driver.models import BusDriverModel
 from bus_system.utils.models import BaseModel
-from bus_system.apps.bus.models import BusModel
 
 
 class DestinationModel(BaseModel):

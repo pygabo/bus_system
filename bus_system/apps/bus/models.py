@@ -1,7 +1,14 @@
-from django.db.models import BooleanField, PositiveSmallIntegerField, ForeignKey, SET_NULL
+# Core Django imports
+from django.db.models import (
+    SET_NULL,
+    BooleanField,
+    ForeignKey,
+    PositiveSmallIntegerField,
+)
 
-from bus_system.utils.models import BaseModel
+# Imports from my apps
 from bus_system.apps.bus_driver.models import BusDriverModel
+from bus_system.utils.models import BaseModel
 
 
 class BusModel(BaseModel):

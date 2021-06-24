@@ -1,7 +1,8 @@
-from django.db.models import ImageField, BooleanField
+# Core Django imports
+from django.db.models import BooleanField, ImageField
 
-from bus_system.utils.models import StakeholderBaseModel
-from bus_system.utils.models import BaseModel
+# Imports from my apps
+from bus_system.utils.models import BaseModel, StakeholderBaseModel
 
 
 class BusDriverModel(BaseModel, StakeholderBaseModel):

@@ -75,7 +75,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "bus_system.users.apps.UsersConfig",
+    "bus_system.apps.users.apps.UsersConfig",
     "bus_system.apps.bus.apps.BusConfig",
     "bus_system.apps.bus_driver.apps.BusDriverConfig",
     "bus_system.apps.passenger.apps.PassengerConfig",
