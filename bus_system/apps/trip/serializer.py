@@ -2,7 +2,7 @@
 from rest_framework.serializers import ModelSerializer
 
 # Imports from my apps
-from bus_system.apps.trip.models import TravelModel, TripModel, DestinationModel
+from bus_system.apps.trip.models import DestinationModel, TravelModel, TripModel
 
 
 class TravelSerializer(ModelSerializer):

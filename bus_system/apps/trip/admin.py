@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # Imports from my apps
-from bus_system.apps.trip.models import DestinationModel, TripModel, TravelModel
+from bus_system.apps.trip.models import DestinationModel, TravelModel, TripModel
 
 admin.site.register(DestinationModel)
 admin.site.register(TripModel)
