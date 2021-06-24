@@ -12,5 +12,8 @@ class BusDriverModel(BaseModel, StakeholderBaseModel):
     avatar = ImageField()
     is_available = BooleanField(default=True)
 
+    def __str__(self):
+        return str("{} {} {}".format(self.first_name, self.surname, self.identification_number))
+
     class Meta:
         db_table = "bus_driver"

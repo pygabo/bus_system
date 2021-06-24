@@ -21,4 +21,5 @@ class BusSerializer(ModelSerializer):
         )
         read_only_fields = (
             'id',
+            'capacity'
         )

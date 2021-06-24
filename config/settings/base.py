@@ -82,6 +82,7 @@ LOCAL_APPS = [
     "bus_system.apps.bus_driver.apps.BusDriverConfig",
     "bus_system.apps.passenger.apps.PassengerConfig",
     "bus_system.apps.trip.apps.TripConfig",
+    "bus_system.apps.ticket.apps.TicketConfig"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
